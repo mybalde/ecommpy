@@ -1,11 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-import datetime
-
-def current_datetime(request):
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    return HttpResponse(html)
+from store.models import Product
 
 def home(req):
-  return render(req, 'home.html')
+  products = Product.objects.all().filter(is_available = True)
+  context = { 'products': products }
+  return render(req, 'home.html', context)
