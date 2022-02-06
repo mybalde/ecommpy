@@ -22,9 +22,11 @@ from django.conf import settings
 from greatkart.settings import MEDIA_ROOT
 from . import views
 from store import urls as store_urls
+from carts import urls as carts_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('store/', include(store_urls))
+    path('store/', include(store_urls)),
+    path('carts/', include(carts_urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
